@@ -1,0 +1,119 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  height: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding:
+    max(24px, env(safe-area-inset-top))
+    max(24px, env(safe-area-inset-right))
+    max(24px, env(safe-area-inset-bottom))
+    max(24px, env(safe-area-inset-left));
+  background:
+    radial-gradient(circle at 50% 38%, #3d1431 0%, #1d0a17 55%, #0d0509 100%) fixed;
+  background-color: #160812;
+  color: #f7dbe6;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(16px, 4vmin, 36px);
+  text-align: center;
+}
+
+h1 {
+  font-size: clamp(1.4rem, 5vmin, 2.25rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.heart-button {
+  width: min(72vw, 52vh, 340px);
+  height: min(72vw, 52vh, 340px);
+  width: min(72vw, 52dvh, 340px);
+  height: min(72vw, 52dvh, 340px);
+  padding: 0;
+  border: 1px solid rgba(255, 140, 180, 0.25);
+  border-radius: 28%;
+  background: linear-gradient(160deg, #2c1121 0%, #1b0914 100%);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  transition: transform 0.15s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.heart-button canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.heart-button:active {
+  transform: scale(0.96);
+}
+
+.heart-button:focus {
+  outline: none;
+}
+
+.heart-button:focus-visible {
+  outline: 3px solid #ff7aa8;
+  outline-offset: 5px;
+}
+
+.heart-button.is-drawing {
+  border-color: rgba(255, 120, 170, 0.55);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.45),
+    0 0 40px rgba(255, 70, 130, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .heart-button:hover {
+    border-color: rgba(255, 140, 180, 0.5);
+    box-shadow:
+      0 24px 60px rgba(0, 0, 0, 0.5),
+      0 0 30px rgba(255, 70, 130, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+}
+
+.hint {
+  min-height: 1.5em;
+  font-size: clamp(0.95rem, 3.6vmin, 1.1rem);
+  opacity: 0.75;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heart-button {
+    transition: none;
+  }
+
+  .heart-button:active {
+    transform: none;
+  }
+}
